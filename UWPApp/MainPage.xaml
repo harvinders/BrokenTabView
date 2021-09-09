@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="UWPApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="HomeTemplate" x:DataType="local:HomeIdentity">
+            <controls:TabViewItem Header="{x:Bind}" Content="{x:Bind}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="OfficeTemplate" x:DataType="local:OfficeIdentity">
+            <controls:TabViewItem Header="{x:Bind}" Content="{x:Bind}" />
+        </DataTemplate>
+        <local:TabItemTemplateSelector x:Key="TabItemTemplateSelector"
+                                                HomeTemplate="{StaticResource HomeTemplate}"
+                                                OfficeTemplate="{StaticResource OfficeTemplate}"/>
+
+    </Page.Resources>
+    <Grid>
+        <controls:TabView TabItemsSource="{x:Bind ViewModel.Identities}" TabItemTemplateSelector="{StaticResource TabItemTemplateSelector }">
+
+        </controls:TabView>
+    </Grid>
+</Page>
